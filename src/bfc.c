@@ -39,5 +39,12 @@ int main(int argc, char* argv[])
 	}
 	if(!in) { printf("Missing input file.\n"); return -1;}
 	if(!out) { printf("Missing output file.\n"); return -1;}
+	FILE *fin = 0, *fout = 0; 
+	fin = fopen(in, "r");
+	if(!fin) { printf("Input file couldn't be read.\n"); return -1;}
+	fout = fopen(out, "wb+");
+	if(!fout) { printf("Output file couldn't be created.\n"); return -1;}
+	fclose(fin);
+	fclose(fout);
 	return 0;
 }
