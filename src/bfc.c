@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "linux.c"
+
 int main(int argc, char* argv[])
 {
 	char *in = 0, *out = 0;
@@ -46,5 +48,6 @@ int main(int argc, char* argv[])
 	if(!fout) { printf("Output file couldn't be created.\n"); return -1;}
 	fclose(fin);
 	fclose(fout);
+	printf(linx86);
 	return 0;
 }

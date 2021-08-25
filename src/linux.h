@@ -1,5 +1,0 @@
-constexpr char Elf[] = {
-
-
-
-}

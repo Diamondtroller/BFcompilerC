@@ -1,0 +1,12 @@
+[ jnz jump nonzero
++ > inc increment
+- < dec decrement
+. , syscalls write read
+i think that's it
+] jmp jump back to [
+
+1) convert bf to machine code
+ 1.1) prealocate the tape
+ 1.2) convert instructions
+2) count the length of program and write it to elf pointer
+3) write elf and program to file

@@ -1,6 +1,6 @@
 # -*- MakeFile -*-
 #all goals that are not files
-.PHONY: build
+.PHONY: build clean debug
 .DEFAULT_GOAL := build
 
 BIN_DIR := bin
@@ -18,6 +18,6 @@ ${OBJ_DIR}/%.o: ${SRC_DIR}/%.c
 ${BIN_DIR}/%: ${OBJ_DIR}/%.o
 	@${CC} $^ ${CFLAGS} -o $@
 build: ${OBJ_DIR}/${OBJS} ${BIN_DIR}/${BINS}
-#so that object files don't get deleted
+debug: ${OBJ_DIR}/${OBJS} ${BIN_DIR}/${BINS}
 clean:
 	@rm -f ${OBJ_DIR}/* ${BIN_DIR}/*
