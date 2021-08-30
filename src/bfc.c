@@ -3,6 +3,8 @@
 
 #include "linux.c"
 
+typedef unsigned char byte;
+
 int main(int argc, char* argv[])
 {
 	char *in = 0, *out = 0;
@@ -46,8 +48,36 @@ int main(int argc, char* argv[])
 	if(!fin) { printf("Input file couldn't be read.\n"); return -1;}
 	fout = fopen(out, "wb+");
 	if(!fout) { printf("Output file couldn't be created.\n"); return -1;}
+	for (int i=0, c=0; c!=EOF; c=freadc(fin)) {
+		switch(c) {
+			case '>':
+				byte data[]={0x47, 0x8B, 0x17};
+				fwrite((void*)data, sizeof(byte), sizeof(data), fout);
+				break;
+			case '<':
+				byte data[]={0x4F, 0x8B, 0x17};
+				fwrite((void*)data, sizeof(byte), sizeof(data), fout);
+				break;
+			case '+':
+				byte data[]={0x42, 0x89, 0x17};
+				fwrite((void*)data, sizeof(byte), sizeof(data), fout);
+				break;
+			case '-':
+				byte data[]={0x4A, 0x89, 0x17};
+				fwrite((void*)data, sizeof(byte), sizeof(data), fout);
+				break;
+			case '.':
+				byte data[] = {0xB8, 0x04, 0x00, 0x00, 0x00, 0xBB, 0x01, 0x00, 0x00, 0x00, 0xCD, 0x80};
+				fwrite((void*)data, sizeof(byte), sizeof(data), fout);
+				break;
+			case ',':
+				byte data[] = {0xB8, 0x04, 0x00, 0x00, 0x00, 0xBB, 0x01, 0x00, 0x00, 0x00, 0xCD, 0x80};
+				fwrite((void*)data, sizeof(byte), sizeof(data), fout);
+				break;
+			}
+		i++;
+	}
 	fclose(fin);
 	fclose(fout);
-	printf(linx86);
 	return 0;
 }
